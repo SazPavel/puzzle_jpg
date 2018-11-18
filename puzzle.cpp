@@ -108,6 +108,7 @@ int main(){
 	
     // создать окно
     sf::RenderWindow window(sf::VideoMode(n1 * TILESIZE, n2 * TILESIZE), "Puzzle");
+	window.setFramerateLimit(120);
 	window.setKeyRepeatEnabled(false);
     int level[N];
     sf::Texture figur[N];  
@@ -139,8 +140,7 @@ int main(){
 		window.draw(figu[i]);
 	}		
     window.display();
-    while (window.isOpen()){
-    	
+    while (window.isOpen()){    	
         sf::Event event;
         while (window.pollEvent(event)){
         	if(event.type == sf::Event::Closed)
@@ -187,9 +187,7 @@ int main(){
       			window.display();
 			}
 		}
-		        	
-		
-   		
+		Sleep(1);	   	
 	} 
     	
     return 0;
