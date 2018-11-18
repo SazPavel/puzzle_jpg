@@ -131,15 +131,23 @@ int main(){
 	int press = 0;
 	int j,j1, l,l1;
     // run the main loop
+    int end = 0;
+    
+	window.clear();  
+	for(int i = 0; i < N; i++){
+		location(figu[i], level[i], n1);
+		window.draw(figu[i]);
+	}		
+    window.display();
     while (window.isOpen()){
-    	if(game == 1){
-    		
-        	sf::Event event;
-        	while (window.pollEvent(event)){
-        		if(event.type == sf::Event::Closed)
-               		window.close();
-                
-        		if(event.type == sf::Event::MouseButtonPressed){
+    	
+        sf::Event event;
+        while (window.pollEvent(event)){
+        	if(event.type == sf::Event::Closed)
+                window.close();	  
+     
+       		if(event.type == sf::Event::MouseButtonPressed){
+       			if(game == 1){ 
         			if(press == 0){
         				j = event.mouseButton.x/TILESIZE  + event.mouseButton.y/TILESIZE*n1;
         				for(int k = 0; k < N; k++){
@@ -159,34 +167,30 @@ int main(){
 						}
 						swap(level[l],level[l1]); 	
 						press = 0;
+						end = 1;
+						for(int i = 1; i < N; i++){
+							if(level[i] < level[i-1]){
+								end = 0;
+							}
+    					} 
+						if(end == 1){
+       						 	printf("You Win");
+       						 	game = 0;
+						}	
 					}
-				}
-			}    
-        	int end = 1;
-			for(int i = 1; i < N; i++){
-				if(level[i] < level[i-1]){
-					end = 0;
-				}
-    		}
-			if(end == 1){
-       		 	printf("You Win");
-       		 	game = 0;
-			}	
+				}  	
+				window.clear();  
+				for(int i = 0; i < N; i++){
+					location(figu[i], level[i], n1);
+					window.draw(figu[i]);
+				}		
+      			window.display();
+			}
 		}
+		        	
 		
-        sf::Event event;
-        while (window.pollEvent(event)){
-        	if(event.type == sf::Event::Closed)
-                window.close();
-		}    
-        	
-		window.clear();  
-		for(int i = 0; i < N; i++){
-			location(figu[i], level[i], n1);
-			window.draw(figu[i]);
-		}		
-       	window.display();
-    } 
+   		
+	} 
     	
     return 0;
 }
