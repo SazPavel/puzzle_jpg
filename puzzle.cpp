@@ -88,11 +88,7 @@ void size_pic(int &n1, int &n2, char arr2[]){
 }
 
 int main(){
-	
-	//скрыть консоль
-	//HWND hWnd = GetConsoleWindow();
-    //ShowWindow(hWnd, SW_HIDE);
-    
+	    
   	char arr2[256];
 	int n1, n2;
 	size_pic(n1, n2, arr2);
@@ -130,8 +126,7 @@ int main(){
 	}
 	int game = 1;
 	int press = 0;
-	int j,j1, l,l1;
-    // run the main loop
+	int j, j1, l, l1;
     int end = 0;
     
 	window.clear();  
@@ -139,6 +134,7 @@ int main(){
 		location(figu[i], level[i], n1);
 		window.draw(figu[i]);
 	}		
+	
     window.display();
     while (window.isOpen()){    	
         sf::Event event;
